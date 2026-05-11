@@ -12,3 +12,10 @@ AMQP (Advanced Message Queuing Protocol) adalah standar protokol terbuka di laye
 
 **Kenapa total antrean bisa menumpuk?**
 Lonjakan antrean terjadi karena publisher menghasilkan dan menembakkan pesan secara instan, sedangkan program subscriber kita perlambat eksekusinya, memakan waktu 1 detik penuh per proses. Pesan-pesan yang belum sempat dikonsumsi ini mengendap mengantre di dalam broker.
+
+**Refleksi Menjalankan 3 Subscriber**
+Saat menjalankan 3 subscriber sekaligus, *spike* antrean pada RabbitMQ menurun jauh lebih cepat. Pesan tidak lagi membebani satu proses, namun didistribusikan menggunakan metode *round-robin* ke ketiga *worker* subscriber yang tersedia secara paralel. Simulasi ini membuktikan tingginya tingkat adaptasi (*scalability*) dan performa *load-balancing* pada *event-driven architecture*.
+
+![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)
