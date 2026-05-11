@@ -14,17 +14,33 @@ impl MessageHandler<UserCreatedEventMessage> for UserCreatedHandler {
     fn handle(&self, message: Box<UserCreatedEventMessage>) -> Result<(), HandleError> {
         let ten_millis = time::Duration::from_millis(1000);
         let _now = time::Instant::now();
-        // thread::sleep(ten_millis); // Uncomment ini nanti untuk simulasi slow subscriber
-        println!("In Andi's Computer [2406495792]. Message received: {:?}", message);
+        
+        // thread::sleep(ten_millis);
+        
+        println!("In Andi Hakim Himawan's Computer. Message received: {:?}", message);
+        
         Ok(())
+    }
+
+    // agar tidak error E0046
+    fn get_handler_action(&self) -> String {
+        todo!()
     }
 }
 
 fn main() {
     let listener = CrosstownBus::new_queue_listener("amqp://guest:guest@localhost:5672".to_owned()).unwrap();
-    let _ = listener.listen("user_created".to_owned(), UserCreatedHandler{}, crosstown_bus::QueueProperties {
-        auto_delete: false, durable: false, use_dead_letter: true
-    });
+    
+    let _ = listener.listen(
+        "user_created".to_owned(), 
+        UserCreatedHandler{},
+        crosstown_bus::QueueProperties { 
+            auto_delete: false, 
+            durable: false,
+            use_dead_letter: true 
+        }
+    );
 
-    loop {}
+    loop {
+    }
 }
