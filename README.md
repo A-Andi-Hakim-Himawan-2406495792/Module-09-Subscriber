@@ -19,3 +19,8 @@ Saat menjalankan 3 subscriber sekaligus, *spike* antrean pada RabbitMQ menurun j
 ![alt text](image.png)
 ![alt text](image-1.png)
 ![alt text](image-2.png)
+
+## Bonus: Running on Cloud
+"Untuk eksperimen cloud, saya menggunakan layanan managed LavinMQ dari CloudAMQP. Konfigurasi firewall dan pembukaan port eksternal sudah ditangani dan dienkripsi (AMQPS) secara otomatis oleh provider, sehingga broker langsung siap menerima koneksi dari luar."
+![alt text](image-5.png)
+![alt text](image-6.png)
